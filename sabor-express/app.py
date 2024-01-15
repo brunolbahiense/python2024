@@ -13,7 +13,7 @@ def finalizar():
     os.system('cls')
     print('Sair')
 
-def escolher_opcoes():
+def escolher_opcoes_if():
     opcao_escolhida = int(input('Escolha uma opção: '))
 
     if opcao_escolhida == 1:
@@ -26,11 +26,27 @@ def escolher_opcoes():
         finalizar()
     else:
         print(f'opcao {opcao_escolhida} invalida!')
+        
+def escolher_opcoes_match():
+    opcao_escolhida = int(input('Escolha uma opção: '))
+
+    match opcao_escolhida:
+        case 1:
+            print('Cadastrar restaurante')
+        case 2:
+            print('Listar restaurante')
+        case 3:
+            print('Ativar restaurante')
+        case 4:
+            finalizar()
+        case _:
+            print(f'opcao {opcao_escolhida} invalida!')
+
 
 def main():
     nome_programa()
     exibir_opcoes()
-    escolher_opcoes()
+    escolher_opcoes_match()
 
 if __name__ == '__main__':
     main()
