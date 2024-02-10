@@ -10,40 +10,51 @@ def exibir_opcoes():
 
 # def é a forma de declarar funções
 def finalizar():
-    os.system('cls')
+    os.system('clear')
     print('Sair')
 
-def escolher_opcoes_if():
-    opcao_escolhida = int(input('Escolha uma opção: '))
+def opcao_invalida():
+    print('opcao invalida!\n')
+    input('digite uma tecla para retornar ao menu principal')
+    main()
 
-    if opcao_escolhida == 1:
-        print('Cadastrar restaurante')
-    elif opcao_escolhida == 2:
-        print('Listar restaurante')
-    elif opcao_escolhida == 3:
-        print('Ativar restaurante')
-    elif opcao_escolhida == 4:
-        finalizar()
-    else:
-        print(f'opcao {opcao_escolhida} invalida!')
+# def escolher_opcoes_if():
+#     try:
+#         opcao_escolhida = int(input('Escolha uma opção: '))
+
+#         if opcao_escolhida == 1:
+#             print('Cadastrar restaurante')
+#         elif opcao_escolhida == 2:
+#             print('Listar restaurante')
+#         elif opcao_escolhida == 3:
+#             print('Ativar restaurante')
+#         elif opcao_escolhida == 4:
+#             finalizar()
+#         else:
+#             opcao_invalida()
+#     except:
+#         opcao_invalida()
         
 def escolher_opcoes_match():
-    opcao_escolhida = int(input('Escolha uma opção: '))
-
-    match opcao_escolhida:
-        case 1:
-            print('Cadastrar restaurante')
-        case 2:
-            print('Listar restaurante')
-        case 3:
-            print('Ativar restaurante')
-        case 4:
-            finalizar()
-        case _:
-            print(f'opcao {opcao_escolhida} invalida!')
+    try:
+        opcao_escolhida = int(input('Escolha uma opção: '))
+        match opcao_escolhida:
+            case 1:
+                print('Cadastrar restaurante')
+            case 2:
+                print('Listar restaurante')
+            case 3:
+                print('Ativar restaurante')
+            case 4:
+                finalizar()
+            case _:
+                opcao_invalida()
+    except:
+        opcao_invalida()
 
 
 def main():
+    os.system('clear')
     nome_programa()
     exibir_opcoes()
     escolher_opcoes_match()
