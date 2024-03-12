@@ -8,45 +8,39 @@ def exibir_opcoes():
     print('3. Ativar restaurante')
     print('4. Sair\n')
 
-# def é a forma de declarar funções
+
 def finalizar():
     os.system('cls')
     print('Sair')
 
-def escolher_opcoes_if():
-    opcao_escolhida = int(input('Escolha uma opção: '))
+def opcao_invalida(opcao_escolhida):
+    print(f'a opção "{opcao_escolhida}" é invalida!')
+    input('Digite uma tecla para voltar ao menu principal')
+    main()
 
-    if opcao_escolhida == 1:
-        print('Cadastrar restaurante')
-    elif opcao_escolhida == 2:
-        print('Listar restaurante')
-    elif opcao_escolhida == 3:
-        print('Ativar restaurante')
-    elif opcao_escolhida == 4:
-        finalizar()
-    else:
-        print(f'opcao {opcao_escolhida} invalida!')
-        
-def escolher_opcoes_match():
-    opcao_escolhida = int(input('Escolha uma opção: '))
 
-    match opcao_escolhida:
-        case 1:
+def escolher_opcao():
+    opcao_escolhida = input('Escolha uma opção: ')
+    try:
+        opcao_escolhida = int(opcao_escolhida)
+        if opcao_escolhida == 1:
             print('Cadastrar restaurante')
-        case 2:
+        elif opcao_escolhida == 2:
             print('Listar restaurante')
-        case 3:
+        elif opcao_escolhida == 3:
             print('Ativar restaurante')
-        case 4:
+        elif opcao_escolhida == 4:
             finalizar()
-        case _:
-            print(f'opcao {opcao_escolhida} invalida!')
-
-
+        else:
+            opcao_invalida(opcao_escolhida)
+    except:
+        opcao_invalida(opcao_escolhida)
+       
 def main():
+    os.system('cls')
     nome_programa()
     exibir_opcoes()
-    escolher_opcoes_match()
+    escolher_opcao()
 
 if __name__ == '__main__':
     main()
