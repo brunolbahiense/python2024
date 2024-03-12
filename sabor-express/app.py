@@ -1,6 +1,30 @@
 import os
 
-restaurantes = ["🍕 Pizza Hut", "🔔 Taco Bell", "☕ Starbucks"]
+restaurantes = [
+    {
+        'nome':'Pizza Hut', 
+        'icone': '🍕',
+        'status': False
+    },
+    {
+        'nome':'Taco Bell',
+        'icone': '🔔',
+        'status': True
+    },
+    {
+        'nome':'Starbucks',
+        'icone': '☕',
+        'status': True
+    },
+    {
+        'nome':'Aoi',
+        'icone': '🍜',
+        'status': False
+    },
+
+]
+
+
 def nome_programa():
     print('𝙎𝙖𝙗𝙤𝙧 𝙀𝙭𝙥𝙧𝙚𝙨𝙨 🍜 \n')
 
@@ -30,15 +54,37 @@ def exibir_opcoes():
 def cadastrar_novo_restaurante():
     exibir_titulo('Cadastro de restaurante')
     nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
-    restaurantes.append(nome_do_restaurante)
-    print(f'O restaurante "{nome_do_restaurante}" foi cadastrado com sucesso!')
+    icone = input('Digite o icone do restaurante: ')
+    dados_restaurante = {'nome': nome_do_restaurante, 'icone': icone, 'status': False}
+    restaurantes.append(dados_restaurante)
+    print(f'O restaurante "{icone} {nome_do_restaurante}" foi cadastrado com sucesso!')
     voltar_ao_menu()
     
+def ativar_restaurante():
+    exibir_titulo('Alternar o status')
+    nome_do_restaurante = input('Digite o nome do restaurante a ter o status alterado: ')
+    restaurante_encontrado = False
+
+    for restaurante in restaurantes:
+        if nome_do_restaurante == restaurante['nome']:
+            restaurante_encontrado = True
+            restaurante['status'] = not restaurante['status'] 
+            print('Status alterado com sucesso')
+            status = '🔴 Inativo'
+            if restaurante['status']: 
+                status = '🟢 Ativo'
+            print(f'{restaurante['icone']} {restaurante['nome'].ljust(12)}  Status: {status}')
+    if not restaurante_encontrado:
+        print('Restaurante não encontrado')
+    voltar_ao_menu()
 
 def listar_restaurantes():
     exibir_titulo('Nossos restaurantes')
     for restaurante in restaurantes:
-        print(restaurante)
+        status = '🔴 Inativo'
+        if restaurante['status']: 
+            status = '🟢 Ativo'
+        print(f'{restaurante['icone']} {restaurante['nome'].ljust(12)}  Status: {status}')
     voltar_ao_menu()
 
 def escolher_opcao():
@@ -50,7 +96,7 @@ def escolher_opcao():
         elif opcao_escolhida == 2:
             listar_restaurantes()
         elif opcao_escolhida == 3:
-            print('Ativar restaurante')
+            ativar_restaurante()
         elif opcao_escolhida == 4:
             finalizar()
         else:
