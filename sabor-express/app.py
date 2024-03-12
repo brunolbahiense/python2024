@@ -10,7 +10,7 @@ def exibir_opcoes():
 
 
 def finalizar():
-    os.system('cls')
+    os.system('clear')
     print('Sair')
 
 def opcao_invalida(opcao_escolhida):
